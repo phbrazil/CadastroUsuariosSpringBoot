@@ -10,6 +10,7 @@ import com.example.Model.usuario;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,15 +29,15 @@ public class UsuarioController {
     //  @Autowired
 //    private usuario dao;
     @GetMapping("/list")
-    public String listTarefas(Model usuarios, Model usuario) {
-
+    public String listUsuarios(Model usuarios, Model usuario, 
+            @ModelAttribute("result") String result) {
+        
         ListUsuariosDAO list = new ListUsuariosDAO();
 
         List<usuario> listTarefas = list.List();
 
         usuarios.addAttribute("usuarios", listTarefas);
         usuarios.addAttribute("usuario", new usuario());
-
         return "listaUsuarios";
     }
 
@@ -65,12 +66,12 @@ public class UsuarioController {
         List<usuario> listUsuarios = list.List();
 
         if (id > 0) {
-            usuarios.addAttribute("result", "userAdded");
-            usuarios.addAttribute("usuarios", listUsuarios);
+            redirectAttrs.addAttribute("result", "userAdded");
+            //usuarios.addAttribute("usuarios", listUsuarios);
 
         } else {
-            usuarios.addAttribute("result", "failedAdded");
-            usuarios.addAttribute("usuarios", listUsuarios);
+            redirectAttrs.addAttribute("result", "failedAdded");
+            //usuarios.addAttribute("usuarios", listUsuarios);
 
         }
 
