@@ -24,11 +24,11 @@
                             <label class='text-muted'>Status Ativação</label>
                         </div>
                         <div class='col-md-3'>
-                            <input class="form-check-input" type="radio" name="status" id="status" value="true" checked>
+                            <input th:field="*{status}" class="form-check-input" type="radio" name="status" id="status" value="true">
                             <label class='text-muted'>Ativado</label>
                         </div>
                         <div class='col-md-3'>
-                            <input class="form-check-input" type="radio" name="status" id="status" value="false">
+                            <input th:field="*{status}" class="form-check-input" type="radio" name="status" id="status" value="false">
                             <label class='text-muted'>Desativado</label>
                         </div>
                     </div>
@@ -40,19 +40,19 @@
                             <label class='text-muted'>Papéis</label>
                         </div>
                         <div class='col-md-2'>
-                            <input class="form-check-input" type="checkbox" name="admin" id="admin" value="true">
+                            <input th:field="*{admin}" class="form-check-input" type="checkbox" name="admin" id="admin" value="true">
                             <label class='text-muted'>Admin</label>
                         </div>
                         <div class='col-md-2'>
-                            <input class="form-check-input" type="checkbox" name="papel1" id="papel1" value="true">
+                            <input th:field="*{papel1}" class="form-check-input" type="checkbox" name="papel1" id="papel1" value="true">
                             <label class='text-muted'>Papel 1</label>
                         </div>
                         <div class='col-md-2'>
-                            <input class="form-check-input" type="checkbox" name="papel2" id="papel2" value="true">
+                            <input th:field="*{papel2}" class="form-check-input" type="checkbox" name="papel2" id="papel2" value="true">
                             <label class='text-muted'>Papel 2</label>
                         </div>
                         <div class='col-md-2'>
-                            <input class="form-check-input" type="checkbox" name="papel3" id="papel3" value="true">
+                            <input th:field="*{papel3}" class="form-check-input" type="checkbox" name="papel3" id="papel3" value="true">
                             <label class='text-muted'>Papel 3</label>
                         </div>
                     </div>

@@ -21,10 +21,11 @@
     <div th:if="${result == 'failedAdded'}" class='alert alert-warning'>Erro ao incluir usuário
     </div>
     <div align="center" class="mb-2 mt-4">
-        <table class="table-striped table-bordered table-hover" style="width: 90%" cellspacing="0">
+        <table  class="table-striped table-bordered table-hover" 
+               style="width: 80%; text-align: center">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>#</th>
                     <th>Nome</th>
                     <th>Status</th>
                     <th>Ações</th>
@@ -32,21 +33,23 @@
             </thead>
             <tbody>
                 <tr th:each="usuario: ${usuarios}">
-                    <td th:text="${usuario.id}" />
+                    <td th:text="${usuarioStat.index+1}" />
                     <td th:text="${usuario.nome}" />
-                    <td th:text="${usuario.status}" />
+                    <td class='text-success' th:if="${usuario.status == true}" th:text="Ativado" />
+                    <td class='text-danger' th:if="${usuario.status == false}" th:text="Desativado" />
                     <td>
-                        <div class='col-md-6'>
+                        <div class='col-md-3'>
                             <div class="row">
                                 <div class='col-md-6'>
-                                    <button type="button" class="btn mb-1 btn-info text-white" data-toggle="modal" th:attr="data-target = '#modal'+${usuario.id}">
+                                    <button type="button" class="btn mb-1 btn-info btn-lg btn-block text-white" data-toggle="modal" th:attr="data-target = '#modal'+${usuario.id}">
                                         Editar
                                     </button>
                                 </div>
                                 <div class='col-md-6'>
                                     <form th:action="@{/deleteUsuario}"  th:object="${usuario}" method="post">
+                                        <input onclick="return confirm('Quer mesmo remover ?');" 
+                                               type="submit" value="Remover" class="btn btn-danger btn-lg btn-block" />
                                         <input type="hidden" name="id" th:value="${usuario.id}" />
-                                        <input onclick="return confirm('Quer mesmo remover ?');" type="submit" value="Remover" class="btn btn-danger" />
                                     </form>
                                 </div>
                             </div>

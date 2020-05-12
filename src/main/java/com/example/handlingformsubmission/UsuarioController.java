@@ -50,7 +50,7 @@ public class UsuarioController {
             RedirectAttributes redirectAttrs) {
 
         AddUsuarioDAO add = new AddUsuarioDAO();
-
+                
         int id = add.addUsuario(usuario);
 
         ListUsuariosDAO list = new ListUsuariosDAO();
