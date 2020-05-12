@@ -16,11 +16,9 @@
     </div>
     <div th:if="${result == 'userAdded'}" class='alert alert-success'>Novo usuário adicionado
     </div>
-    <div th:if="${result == 'Tarefa deletada'}" class='alert alert-danger'>Tarefa deletada
+    <div th:if="${result == 'userDeleted'}" class='alert alert-danger'>Usuário deletado
     </div>
-    <div th:if="${result == 'Tarefa atualizada'}" class='alert alert-success'>Tarefa atualizada com sucesso
-    </div>
-    <div th:if="${result == 'Tarefa concluída'}" class='alert alert-success'>Tarefa concluída
+    <div th:if="${result == 'failedAdded'}" class='alert alert-warning'>Erro ao incluir usuário
     </div>
     <div align="center" class="mb-2 mt-4">
         <table class="table-striped table-bordered table-hover" style="width: 90%" cellspacing="0">
@@ -28,43 +26,29 @@
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
-                    <th>Descrição</th>
                     <th>Status</th>
-                    <th>Responsável</th>
-                    <th>Previsão início</th>
-                    <th>Previsão fim</th>
-                    <th style='text-align: center'>Ações</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <tr th:each="usuario: ${usuarios}">
                     <td th:text="${usuario.id}" />
                     <td th:text="${usuario.nome}" />
-                    <td th:text="${usuario.descricao}" />
                     <td th:text="${usuario.status}" />
-                    <td th:text="${usuario.responsavel}" />
-                    <td th:text="${usuario.datainicio}" />
-                    <td th:text="${usuario.datafim}" />
-                    <td align='center'>
-                        <div class="row">
-                            <div th:if="${usuario.status == 'Finalizada'}" class='mb-2'>
-                                <span th:text="'Tarefa finalizada com nota '+${usuario.nota}" class='text-muted'></span>
-                            </div>
-                            <div th:if="${usuario.status != 'Finalizada'}" class='mb-2'>
-                                <form th:action="@{/deleteUsuario}"  th:object="${usuario}" method="post">
-                                    <input type="hidden" name="id" th:value="${usuario.id}" />
-                                    <input onclick="return confirm('Quer mesmo deletar?');" type="submit" value="Delete" class="btn btn-danger" />
-                                </form>
-                            </div>
-                            <div th:if="${usuario.status != 'Finalizada'}" class='mb-2'>
-                                <button type="button" class="btn mb-1 btn-info text-white" data-toggle="modal" th:attr="data-target = '#modal'+${usuario.id}">
-                                    Editar
-                                </button>
-                            </div>
-                            <div th:if="${usuario.status != 'Finalizada'}" class='mb-2'>
-                                <button type="button" class="btn mb-1 btn-success text-white" data-toggle="modal" th:attr="data-target = '#modalConcluir'+${usuario.id}">
-                                    Concluir
-                                </button>
+                    <td>
+                        <div class='col-md-6'>
+                            <div class="row">
+                                <div class='col-md-6'>
+                                    <button type="button" class="btn mb-1 btn-info text-white" data-toggle="modal" th:attr="data-target = '#modal'+${usuario.id}">
+                                        Editar
+                                    </button>
+                                </div>
+                                <div class='col-md-6'>
+                                    <form th:action="@{/deleteUsuario}"  th:object="${usuario}" method="post">
+                                        <input type="hidden" name="id" th:value="${usuario.id}" />
+                                        <input onclick="return confirm('Quer mesmo remover ?');" type="submit" value="Remover" class="btn btn-danger" />
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </td>

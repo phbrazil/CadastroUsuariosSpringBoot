@@ -17,7 +17,7 @@ import org.hibernate.cfg.Configuration;
  */
 public class AddUsuarioDAO {
 
-    public Integer addTarefa(usuario tarefa) {
+    public Integer addUsuario(usuario usuario) {
 
         int id;
 
@@ -34,7 +34,7 @@ public class AddUsuarioDAO {
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            id = (Integer) session.save(tarefa);
+            id = (Integer) session.save(usuario);
 
             //comita as informacoes
             tx.commit();

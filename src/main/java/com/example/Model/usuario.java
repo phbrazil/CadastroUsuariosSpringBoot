@@ -11,10 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-/**
- *
- * @author paulo.bezerra
- */
 @Entity
 public class usuario implements Serializable {
 
@@ -22,40 +18,30 @@ public class usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private String username;
     private String nome;
-    private String descricao;
-    private String status;
-    private String responsavel;
-    private String datainicio;
-    private String datafim;
-    private int nota;
-    
-    public usuario(){
-        
+    private String password;
+    private boolean status;
+    private boolean admin;
+    private boolean papel1;
+    private boolean papel2;
+    private boolean papel3;
+
+    public usuario() {
+
     }
 
-    public usuario(Integer id, String nome, String descricao, String status, 
-            String responsavel, String datainicio, String datafim, int nota) {
+    public usuario(Integer id, String username, String nome, String password, boolean status, boolean admin, boolean papel1, boolean papel2, boolean papel3) {
         this.id = id;
+        this.username = username;
         this.nome = nome;
-        this.descricao = descricao;
+        this.password = password;
         this.status = status;
-        this.responsavel = responsavel;
-        this.datainicio = datainicio;
-        this.datafim = datafim;
-        this.nota = nota;
+        this.admin = admin;
+        this.papel1 = papel1;
+        this.papel2 = papel2;
+        this.papel3 = papel3;
     }
-
-    public int getNota() {
-        return nota;
-    }
-
-    public void setNota(int nota) {
-        this.nota = nota;
-    }
-    
-    
-    
 
     public Integer getId() {
         return id;
@@ -63,6 +49,14 @@ public class usuario implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNome() {
@@ -73,49 +67,55 @@ public class usuario implements Serializable {
         this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getPassword() {
+        return password;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
-    public String getResponsavel() {
-        return responsavel;
+    public boolean isAdmin() {
+        return admin;
     }
 
-    public void setResponsavel(String responsavel) {
-        this.responsavel = responsavel;
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
-    public String getDatainicio() {
-        return datainicio;
+    public boolean isPapel1() {
+        return papel1;
     }
 
-    public void setDatainicio(String datainicio) {
-        this.datainicio = datainicio;
+    public void setPapel1(boolean papel1) {
+        this.papel1 = papel1;
     }
 
-    public String getDatafim() {
-        return datafim;
+    public boolean isPapel2() {
+        return papel2;
     }
 
-    public void setDatafim(String datafim) {
-        this.datafim = datafim;
+    public void setPapel2(boolean papel2) {
+        this.papel2 = papel2;
     }
-    
-    
-    
-    
+
+    public boolean isPapel3() {
+        return papel3;
+    }
+
+    public void setPapel3(boolean papel3) {
+        this.papel3 = papel3;
+    }
+
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -138,7 +138,7 @@ public class usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "com.example.Model.tarefa[ id=" + id + " ]";
+        return "com.example.Model.usuario[ id=" + id + " ]";
     }
 
 }

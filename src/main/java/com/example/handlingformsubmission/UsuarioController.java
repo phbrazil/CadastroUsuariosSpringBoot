@@ -19,11 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class TarefaController {
+public class UsuarioController {
 
-  //  @Autowired
+    //  @Autowired
 //    private usuario dao;
-
     @GetMapping("/list")
     public String listTarefas(Model usuarios, Model usuario) {
 
@@ -52,15 +51,22 @@ public class TarefaController {
 
         AddUsuarioDAO add = new AddUsuarioDAO();
 
-        add.addTarefa(usuario);
+        int id = add.addUsuario(usuario);
 
         ListUsuariosDAO list = new ListUsuariosDAO();
 
         List<usuario> listUsuarios = list.List();
 
         //redirectAttrs.addAttribute("tarefas", listTarefas);
-        usuarios.addAttribute("result", "userAdded");
-        usuarios.addAttribute("usuarios", listUsuarios);
+        if (id > 0) {
+            usuarios.addAttribute("result", "userAdded");
+            usuarios.addAttribute("usuarios", listUsuarios);
+
+        } else {
+            usuarios.addAttribute("result", "failedAdded");
+            usuarios.addAttribute("usuarios", listUsuarios);
+
+        }
 
         return "listaUsuarios";
         //return  "redirect:listaUsuarios";
@@ -84,7 +90,7 @@ public class TarefaController {
 
         List<usuario> listTarefas = list.List();
 
-        usuarios.addAttribute("result", "Usuario deletada");
+        usuarios.addAttribute("result", "userDeleted");
 
         usuarios.addAttribute("usuarios", listTarefas);
 
@@ -106,25 +112,6 @@ public class TarefaController {
         usuarios.addAttribute("result", "Usuario atualizado");
 
         usuarios.addAttribute("usuarios", listTarefas);
-
-        return "listaUsuarios";
-    }
-
-    @PostMapping("/concluirTarefa")
-    public String concluirTarefa(@ModelAttribute usuario tarefa, Model tarefas) {
-
-        ConcluirUsuarioDAO concluir = new ConcluirUsuarioDAO();
-
-        concluir.iniciarTarefa(tarefa.getId(), tarefa.getNota());
-
-        //BUSCAR LISTA ATUALIZADA        
-        ListUsuariosDAO list = new ListUsuariosDAO();
-
-        List<usuario> listTarefas = list.List();
-
-        tarefas.addAttribute("result", "Tarefa concluída");
-
-        tarefas.addAttribute("tarefas", listTarefas);
 
         return "listaUsuarios";
     }
