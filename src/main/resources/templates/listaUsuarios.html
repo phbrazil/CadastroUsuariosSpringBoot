@@ -43,7 +43,8 @@
                         <div class='col-md-12'>
                             <div class="row">
                                 <div class='col-md-6'>
-                                    <button type="button" class="btn mb-1 btn-info btn-lg btn-block text-white" data-toggle="modal" th:attr="data-target = '#modal'+${usuario.id}">
+                                    <button type="button" class="btn mb-1 btn-info btn-lg btn-block text-white" data-toggle="modal" 
+                                            th:attr="data-target = '#modal'+${usuario.id}">
                                         Editar
                                     </button>
                                 </div>
@@ -61,100 +62,89 @@
             </tbody>
         </table>
 
-
-        <div th:each="usuario: ${usuarios}">
-            <div  class="modal fade" th:attr="id = 'modal'+${usuario.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                  aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <!--Content-->
-                    <div class="modal-content">
-                        <!--Header-->
-                        <div class="modal-header light-blue darken-3 white-text">
-                            <h4 class="title text-muted text-center">Editar Usuario</h4>                                
-                            <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <!--MODAL EDIT USER-->
-                        <div class="modal-body mb-0">
-                            <form action="#" th:action="@{/editUsuario}" th:object="${usuario}" method="post">
-                                <div class='col-md-12'>
+        <div th:each="usuario: ${usuarios}" class="modal fade" th:attr="id = 'modal'+${usuario.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header light-blue darken-3 white-text">
+                        <h4 class="title text-muted text-center">Editar Usuario</h4>                                
+                        <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <!--MODAL EDIT USER-->
+                    <div class="modal-body mb-0">
+                        <form action="#" th:action="@{/editUsuario}" th:object="${usuario}" method="post">
+                            <div class='col-md-12'>
+                                <div class='col-md-12 mb-2'>
+                                    <div class='row'>
+                                        <div class='col-md-3'>
+                                            <label class='text-muted'>Username</label>
+                                        </div>
+                                        <div class='col-md-9 mb-2'>
+                                            <input name="username" th:value="*{username}" title="Username" type="text" class="form-control" id="username" placeholder="Username" maxlength ="70" required>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <label class='text-muted'>Nome Completo</label>
+                                        </div>
+                                        <div class='col-md-9 mb-2'>
+                                            <input name="nome" th:value="*{nome}" title="Nome Completo" type="text" class="form-control" id="nome" placeholder="Nome Completo" maxlength ="70" required>
+                                        </div>
+                                        <div class='col-md-3'>
+                                            <label class='text-muted'>Senha</label>
+                                        </div>
+                                        <div class='col-md-9 mb-4'>
+                                            <input name="password" th:value="*{password}" title="Senha" type="password" class="form-control" id="password" placeholder="Senha" value="" maxlength ="70" required>
+                                        </div>
+                                        <input name="id"  th:value="*{id}" type="hidden" id="id">
+                                    </div>
+                                    <div class='col-md-12 mb-2'>
+                                        <div class='row'>
+                                            <div class='col-md-4'>
+                                                <label class='text-muted'>Status Ativação</label>
+                                            </div>
+                                            <div class='col-md-3'>
+                                                <input th:field="*{status}" class="form-check-input" type="radio" name="status" id="status" value="true">
+                                                <label class='text-muted'>Ativado</label>
+                                            </div>
+                                            <div class='col-md-3'>
+                                                <input th:field="*{status}" class="form-check-input" type="radio" name="status" id="status" value="false">
+                                                <label class='text-muted'>Desativado</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class='col-md-12 mb-2'>
                                         <div class='row'>
                                             <div class='col-md-3'>
-                                                <label class='text-muted'>Username</label>
+                                                <label class='text-muted'>Papéis</label>
                                             </div>
-                                            <div class='col-md-9 mb-2'>
-                                                <input name="password" th:field="*{username}" th:value="*{username}" title="Username" type="text" class="form-control" id="username" placeholder="Username" maxlength ="70" required>
+                                            <div class='col-md-2'>
+                                                <input th:field="*{admin}" class="form-check-input" type="checkbox" name="admin" id="admin" value="true">
+                                                <label class='text-muted'>Admin</label>
                                             </div>
-                                            <div class='col-md-3'>
-                                                <label class='text-muted'>Nome Completo</label>
+                                            <div class='col-md-2'>
+                                                <input th:field="*{papel1}" class="form-check-input" type="checkbox" name="papel1" id="papel1" value="true">
+                                                <label class='text-muted'>Papel 1</label>
                                             </div>
-                                            <div class='col-md-9 mb-2'>
-                                                <input name="nome" th:field="*{nome}" th:value="*{nome}"  title="Nome Completo" type="text" class="form-control" id="nome" placeholder="Nome Completo" maxlength ="70" required>
+                                            <div class='col-md-2'>
+                                                <input th:field="*{papel2}" class="form-check-input" type="checkbox" name="papel2" id="papel2" value="true">
+                                                <label class='text-muted'>Papel 2</label>
                                             </div>
-                                            <div class='col-md-3'>
-                                                <label class='text-muted'>Senha</label>
-                                            </div>
-                                            <div class='col-md-9 mb-4'>
-                                                <input name="password" th:field="*{password}" th:value="*{password}"  title="Senha" type="password" class="form-control" id="password" placeholder="Senha" value="" maxlength ="70" required>
-                                            </div>
-                                            <input name="id"  th:value="*{id}" type="hidden" id="id">
-                                        </div>
-                                        <p><input type="submit" value="Atualizar" class='btn btn-success' />
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <!--/.Content-->
-                </div>
-            </div>
-        </div>
-        <div th:each="usuario: ${usuarios}">
-            <div class="modal fade" th:attr="id = 'modalConcluir'+${usuario.id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-md" role="document">
-                    <!--Content-->
-                    <div class="modal-content">
-                        <!--Header-->
-                        <div class="modal-header light-blue darken-3 white-text">
-                            <h4 class="title text-muted text-center">Editar Usuario</h4>                                
-                            <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <!--Body-->
-                        <div class="modal-body mb-0">
-                            <form action="#" th:action="@{/concluirUsuario}" th:object="${usuario}" method="post">
-                                <div class='col-md-12'>
-                                    <div class='row'>
-                                        <div class='col-md-4'>
-                                            <span class='text-muted'>Deseja finalizar a tarefa?</span>
-                                        </div>
-
-                                        <input name="id"  th:value="*{id}" type="hidden" id="id">
-                                    </div>
-                                </div>
-                                <div class='col-md-7 mt-2'>
-                                    <div class='row'>
-                                        <div class='col-md-2 mb-2'>
-                                            <div class="form-group col-xs-12">
-                                                <button type="submit" class="btn btn-sm btn-success">Sim</button>
-                                            </div>
-                                        </div>
-                                        <div class='col-md-2 mb-2'>
-                                            <div class="form-group col-xs-12">
-                                                <button type="submit" class="btn btn-sm btn-danger" data-dismiss="modal">Não</button>
+                                            <div class='col-md-2'>
+                                                <input th:field="*{papel3}" class="form-check-input" type="checkbox" name="papel3" id="papel3" value="true">
+                                                <label class='text-muted'>Papel 3</label>
                                             </div>
                                         </div>
                                     </div>
+                                    <p><input type="submit" value="Atualizar" class='btn btn-success' />
                                 </div>
-                            </form>
-                        </div>
-                        <!--/.Content-->
+                            </div>
+                        </form>
                     </div>
                 </div>
+                <!--/.Content-->
             </div>
         </div>
 
