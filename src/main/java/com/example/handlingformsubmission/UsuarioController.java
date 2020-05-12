@@ -7,15 +7,19 @@ import com.example.DAO.tarefas.GetUsuarioDAO;
 import com.example.DAO.tarefas.ListUsuariosDAO;
 import com.example.DAO.tarefas.UpdateUsuarioDAO;
 import com.example.Model.usuario;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -26,7 +30,6 @@ public class UsuarioController {
     @GetMapping("/list")
     public String listTarefas(Model usuarios, Model usuario) {
 
-        System.out.println("Listing");
         ListUsuariosDAO list = new ListUsuariosDAO();
 
         List<usuario> listTarefas = list.List();
@@ -46,11 +49,15 @@ public class UsuarioController {
     }
 
     @PostMapping("/AddUsuario")
-    public String tarefaSubmit(@ModelAttribute usuario usuario, Model usuarios,
+    public String usuarioSubmit(@ModelAttribute usuario usuario, Model usuarios,
             RedirectAttributes redirectAttrs) {
 
         AddUsuarioDAO add = new AddUsuarioDAO();
-                
+
+        String dataCadastro = new SimpleDateFormat("dd-MM-yyyy_HH:mm:ss").format(Calendar.getInstance().getTime());
+
+        usuario.setDataCadastro(dataCadastro);
+
         int id = add.addUsuario(usuario);
 
         ListUsuariosDAO list = new ListUsuariosDAO();
@@ -68,8 +75,8 @@ public class UsuarioController {
 
         }
 
-        return "listaUsuarios";
-        //return  "redirect:listaUsuarios";
+        //return "listaUsuarios";
+        return "redirect:list";
     }
 
     @PostMapping("/deleteUsuario")

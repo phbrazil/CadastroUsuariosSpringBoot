@@ -26,12 +26,15 @@ public class usuario implements Serializable {
     private boolean papel1;
     private boolean papel2;
     private boolean papel3;
+    private String dataCadastro;
 
     public usuario() {
 
     }
 
-    public usuario(Integer id, String username, String nome, String password, boolean status, boolean admin, boolean papel1, boolean papel2, boolean papel3) {
+    public usuario(Integer id, String username, String nome, String password,
+            boolean status, boolean admin, boolean papel1, boolean papel2, boolean papel3,
+            String dataCadastro) {
         this.id = id;
         this.username = username;
         this.nome = nome;
@@ -41,7 +44,18 @@ public class usuario implements Serializable {
         this.papel1 = papel1;
         this.papel2 = papel2;
         this.papel3 = papel3;
+        this.dataCadastro = dataCadastro;
     }
+
+    public String getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(String dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+    
+    
 
     public Integer getId() {
         return id;
