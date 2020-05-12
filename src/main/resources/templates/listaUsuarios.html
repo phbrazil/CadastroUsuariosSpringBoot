@@ -75,23 +75,12 @@
                             <form action="#" th:action="@{/editUsuario}" th:object="${usuario}" method="post">
                                 <div class='col-md-12'>
                                     <div class='col-md-5 mb-2'>
-                                        <input name="responsavel" th:value="*{responsavel}" title="Nome do Responsável" type="text" class="form-control" id="responsavel" maxlength ="70" required>
+                                        <input name="responsavel" th:value="*{nome}" title="Nome Completo" type="text" class="form-control" id="responsavel" maxlength ="70" required>
                                     </div>
                                     <div class='col-md-5 mb-2'>
-                                        <input name="nome" th:value="*{nome}"  title="Nome da Tarefa" type="text" class="form-control" id="artista" placeholder="Nome da Tarefa" value="" maxlength ="70" required>
-                                    </div>
-                                    <div class='col-md-5 mb-2'>
-                                        <input name="datainicio"  th:value="*{datainicio}"  title="Inicio Tarefa" type="date" class="form-control" id="datainicio" placeholder="Ano da Tarefa" value="" maxlength ="70" required>
-                                    </div>
-                                    <div class='col-md-5 mb-2'>
-                                        <input name="datafim"  th:value="*{datafim}"  title="Fim Tarefa" type="date" class="form-control" id="datafim" placeholder="Fim da Tarefa" value="" maxlength ="70" required>
-                                    </div>
-                                    <div class='col-md-5 mb-2'>
-                                        <textarea name="descricao"  th:value="*{descricao}"  th:text="*{descricao}" title="Descrição" type="text" class="form-control" id="descricao" placeholder="Descrição da tarefa" value="" maxlength ="200" required></textarea>
+                                        <input readonly name="username" th:value="*{username}"  title="Username" type="text" class="form-control" id="username" placeholder="Username" value="" maxlength ="70" required>
                                     </div>
                                     <input name="id"  th:value="*{id}" type="hidden" id="id">
-                                    <input name="status"  th:value="*{status}" type="hidden" id="status">
-                                    <input name="nota"  th:value="*{nota}" type="hidden" id="nota">
 
                                     <p><input type="submit" value="Atualizar" class='btn btn-success' />
                                 </div>
@@ -110,7 +99,7 @@
                     <div class="modal-content">
                         <!--Header-->
                         <div class="modal-header light-blue darken-3 white-text">
-                            <h4 class="title text-muted text-center">Finalizar Usuario</h4>                                
+                            <h4 class="title text-muted text-center">Editar Usuario</h4>                                
                             <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
@@ -123,21 +112,7 @@
                                         <div class='col-md-4'>
                                             <span class='text-muted'>Deseja finalizar a tarefa?</span>
                                         </div>
-                                        <div class="col-md-4 order-md-1">
-                                            <label for="form-autocomplete-1" class="active text-muted"><strong>Selecione a nota</strong></label>
-                                            <select th:field="*{nota}"  data-toggle="tooltip" autofocus title="" type="text" autocomplete="off" class="input-group form-control" required='true' data-width="auto" data-live-search="true" data-size="5" id="nota" name="nota" maxlength="70">
-                                                <option value='1'>1</option>
-                                                <option value='2'>2</option>
-                                                <option value='3'>3</option>
-                                                <option value='4'>4</option>
-                                                <option value='5'>5</option>
-                                                <option value='6'>6</option>
-                                                <option value='7'>7</option>
-                                                <option value='8'>8</option>
-                                                <option value='9'>9</option>
-                                                <option value='10'>10</option>
-                                            </select>
-                                        </div>
+
                                         <input name="id"  th:value="*{id}" type="hidden" id="id">
                                     </div>
                                 </div>

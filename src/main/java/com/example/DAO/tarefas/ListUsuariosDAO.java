@@ -12,10 +12,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-/**
- *
- * @author paulo.bezerra
- */
 public class ListUsuariosDAO {
 
     public  List<usuario> List() {
