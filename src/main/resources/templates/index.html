@@ -35,7 +35,7 @@
                     <input type="reset" value="Limpar"  class='btn btn-danger'/></p>
                 <input name="nota"  th:value="*{nota}" type="hidden" id="nota">
             </form>
-            <a href="/list" class='btn btn-lg btn-primary' style='text-decoration: none'>Ver Usuários Cadastrados</a>
+            <a style='text-decoration: none' class='btn btn-lg btn-primary' th:href="@{/list}">Ver Usuários Cadastrados</a> 
 
         </div>
     </body>

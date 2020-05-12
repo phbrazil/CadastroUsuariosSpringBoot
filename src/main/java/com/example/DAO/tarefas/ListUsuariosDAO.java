@@ -26,7 +26,7 @@ public class ListUsuariosDAO {
 
         //abre sessao com o banco
         Session session = sf.openSession();
-        List<usuario> tarefas;
+        List<usuario> usuarios;
 
         try {
             
@@ -35,7 +35,7 @@ public class ListUsuariosDAO {
 
             String hql = "from usuario";
 
-            tarefas = session.createQuery(hql).list();
+            usuarios = session.createQuery(hql).list();
 
             //comita as informacoes
             tx.commit();
@@ -49,7 +49,7 @@ public class ListUsuariosDAO {
         }
         
 
-        return tarefas;
+        return usuarios;
     }
 
 }
