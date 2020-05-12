@@ -10,7 +10,7 @@
             <h1 class='text-muted mt-4'>Novo Usuário</h1>
             <form action="#" th:action="@{/AddUsuario}" th:object="${usuario}" method="post">
                 <div class='col-md-5 mb-2'>
-                    <input name="responsavel" th:field="*{responsavel}" title="Nome do Responsável" type="text" class="form-control" id="responsavel" placeholder="Nome do Responsável" value="" maxlength ="70" required>
+                    <input name="responsavel" th:field="*{responsavel}" title="Nome do Usuário" type="text" class="form-control" id="responsavel" placeholder="Nome do Usuário" value="" maxlength ="70" required>
                 </div>
                 <div class='col-md-5 mb-2'>
                     <input name="nome" th:field="*{nome}" title="Nome da Tarefa" type="text" class="form-control" id="artista" placeholder="Nome da Tarefa" value="" maxlength ="70" required>
