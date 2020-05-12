@@ -64,7 +64,6 @@ public class UsuarioController {
 
         List<usuario> listUsuarios = list.List();
 
-        //redirectAttrs.addAttribute("tarefas", listTarefas);
         if (id > 0) {
             usuarios.addAttribute("result", "userAdded");
             usuarios.addAttribute("usuarios", listUsuarios);
