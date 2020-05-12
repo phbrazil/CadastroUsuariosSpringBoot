@@ -1,13 +1,12 @@
 package com.example.handlingformsubmission;
 
-import com.example.DAO.tarefas.addTarefaDAO;
-import com.example.DAO.tarefas.concluirTarefaDAO;
-import com.example.DAO.tarefas.deleteTarefaDAO;
-import com.example.DAO.tarefas.getTarefaDAO;
-import com.example.DAO.tarefas.iniciarTarefaDAO;
-import com.example.DAO.tarefas.listTarefas;
-import com.example.DAO.tarefas.updateTarefaDAO;
-import com.example.Model.tarefa;
+import com.example.DAO.tarefas.AddUsuarioDAO;
+import com.example.DAO.tarefas.ConcluirUsuarioDAO;
+import com.example.DAO.tarefas.DeleteUsuarioDAO;
+import com.example.DAO.tarefas.GetUsuarioDAO;
+import com.example.DAO.tarefas.ListUsuariosDAO;
+import com.example.DAO.tarefas.UpdateUsuarioDAO;
+import com.example.Model.usuario;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,143 +21,108 @@ public class TarefaController {
     @GetMapping("/list")
     public String listTarefas(Model tarefas, Model tarefa) {
 
-        listTarefas list = new listTarefas();
+        System.out.println("Listing");
+        ListUsuariosDAO list = new ListUsuariosDAO();
 
-        List<tarefa> listTarefas = list.List();
+        List<usuario> listTarefas = list.List();
 
         tarefas.addAttribute("tarefas", listTarefas);
-        tarefas.addAttribute("tarefa", new tarefa());
+        tarefas.addAttribute("tarefa", new usuario());
 
-        return "listaTarefas";
+        return "listaUsuarios";
     }
 
-    @GetMapping("/tarefa")
-    public String tarefaForm(Model tarefa) {
+    @GetMapping("/")
+    public String usuarioForm(Model usuario) {
 
-        tarefa.addAttribute("tarefa", new tarefa());
-
-        return "tarefa";
+        usuario.addAttribute("usuario", new usuario());
+        
+        return "index";
     }
 
-    @PostMapping("/tarefa")
-    public String tarefaSubmit(@ModelAttribute tarefa tarefa, Model tarefas,
+    @PostMapping("/AddUsuario")
+    public String tarefaSubmit(@ModelAttribute usuario tarefa, Model tarefas,
             RedirectAttributes redirectAttrs) {
 
-        addTarefaDAO add = new addTarefaDAO();
+        AddUsuarioDAO add = new AddUsuarioDAO();
 
         add.addTarefa(tarefa);
 
-        listTarefas list = new listTarefas();
+        ListUsuariosDAO list = new ListUsuariosDAO();
 
-        List<tarefa> listTarefas = list.List();
+        List<usuario> listTarefas = list.List();
 
         //redirectAttrs.addAttribute("tarefas", listTarefas);
         tarefas.addAttribute("result", "Nova tarefa adicionada");
         tarefas.addAttribute("tarefas", listTarefas);
 
-        return "listaTarefas";
-        //return  "redirect:listaTarefas";
+        return "listaUsuarios";
+        //return  "redirect:listaUsuarios";
     }
 
-    @PostMapping("/deleteTarefa")
-    public String deleteTarefa(@ModelAttribute tarefa tarefa, Model tarefas) {
-
-        System.out.println("Deleting tarefa");
+    @PostMapping("/deleteUsuario")
+    public String deleteUsuario(@ModelAttribute usuario usuario, Model usuarios) {
 
         //PEGAR A TAREFA NO BANCO PELO ID
-        getTarefaDAO get = new getTarefaDAO();
+        GetUsuarioDAO get = new GetUsuarioDAO();
 
-        tarefa = get.getTarefa(tarefa.getId());
+        usuario = get.getUsuario(usuario.getId());
 
         // DELETAR A TAREFA
-        deleteTarefaDAO delete = new deleteTarefaDAO();
+        DeleteUsuarioDAO delete = new DeleteUsuarioDAO();
 
-        delete.deleteTarefa(tarefa);
+        delete.deleteUsuario(usuario);
 
         //BUSCAR LISTA ATUALIZADA        
-        listTarefas list = new listTarefas();
+        ListUsuariosDAO list = new ListUsuariosDAO();
 
-        List<tarefa> listTarefas = list.List();
+        List<usuario> listTarefas = list.List();
 
-        tarefas.addAttribute("result", "Tarefa deletada");
+        usuarios.addAttribute("result", "Usuario deletada");
 
-        tarefas.addAttribute("tarefas", listTarefas);
+        usuarios.addAttribute("usuarios", listTarefas);
 
-        return "listaTarefas";
+        return "listaUsuarios";
     }
 
-    @PostMapping("/iniciarTarefa")
-    public String iniciarTarefa(@ModelAttribute tarefa tarefa, Model tarefas) {
+ 
+    @PostMapping("/editUsuario")
+    public String editUsuario(@ModelAttribute usuario usuario, Model usuarios) {
 
-        System.out.println("Iniciando tarefa");
+        UpdateUsuarioDAO update = new UpdateUsuarioDAO();
 
-        //PEGAR A TAREFA NO BANCO PELO ID
-        getTarefaDAO get = new getTarefaDAO();
-
-        tarefa = get.getTarefa(tarefa.getId());
-
-        // INICIAR A TAREFA
-        iniciarTarefaDAO iniciar = new iniciarTarefaDAO();
-
-        int result = iniciar.iniciarTarefa(tarefa);
-
-        System.out.println(result);
+        update.updateUsuario(usuario);
 
         //BUSCAR LISTA ATUALIZADA        
-        listTarefas list = new listTarefas();
+        ListUsuariosDAO list = new ListUsuariosDAO();
 
-        List<tarefa> listTarefas = list.List();
+        List<usuario> listTarefas = list.List();
 
-        tarefas.addAttribute("result", "Tarefa iniciada");
+        usuarios.addAttribute("result", "Usuario atualizado");
 
-        tarefas.addAttribute("tarefas", listTarefas);
+        usuarios.addAttribute("usuarios", listTarefas);
 
-        return "listaTarefas";
-    }
-
-    @PostMapping("/editTarefa")
-    public String editTarefa(@ModelAttribute tarefa tarefa, Model tarefas) {
-
-        System.out.println("Editando tarefa");
-
-        System.out.println("Novo nome: " + tarefa.getNome());
-
-        updateTarefaDAO update = new updateTarefaDAO();
-
-        update.updateTarefa(tarefa);
-
-        //BUSCAR LISTA ATUALIZADA        
-        listTarefas list = new listTarefas();
-
-        List<tarefa> listTarefas = list.List();
-
-        tarefas.addAttribute("result", "Tarefa atualizada");
-
-        tarefas.addAttribute("tarefas", listTarefas);
-
-        return "listaTarefas";
+        return "listaUsuarios";
     }
 
     @PostMapping("/concluirTarefa")
-    public String concluirTarefa(@ModelAttribute tarefa tarefa, Model tarefas) {
-
-        System.out.println("Concluindo tarefa");
+    public String concluirTarefa(@ModelAttribute usuario tarefa, Model tarefas) {
         
-        concluirTarefaDAO concluir = new concluirTarefaDAO();
+        ConcluirUsuarioDAO concluir = new ConcluirUsuarioDAO();
         
         concluir.iniciarTarefa(tarefa.getId(), tarefa.getNota());
         
         
         //BUSCAR LISTA ATUALIZADA        
-        listTarefas list = new listTarefas();
+        ListUsuariosDAO list = new ListUsuariosDAO();
 
-        List<tarefa> listTarefas = list.List();
+        List<usuario> listTarefas = list.List();
 
         tarefas.addAttribute("result", "Tarefa concluída");
 
         tarefas.addAttribute("tarefas", listTarefas);
 
-        return "listaTarefas";
+        return "listaUsuarios";
     }
 
 }

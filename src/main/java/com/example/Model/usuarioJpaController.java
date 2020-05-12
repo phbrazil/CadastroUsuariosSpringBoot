@@ -19,9 +19,9 @@ import javax.persistence.criteria.Root;
  *
  * @author paulo.bezerra
  */
-public class TarefaJpaController implements Serializable {
+public class usuarioJpaController implements Serializable {
 
-    public TarefaJpaController(EntityManagerFactory emf) {
+    public usuarioJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
@@ -30,12 +30,12 @@ public class TarefaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(tarefa musica) {
+    public void create(usuario usuario) {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            em.persist(musica);
+            em.persist(usuario);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -44,19 +44,19 @@ public class TarefaJpaController implements Serializable {
         }
     }
 
-    public void edit(tarefa musica) throws NonexistentEntityException, Exception {
+    public void edit(usuario usuario) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            musica = em.merge(musica);
+            usuario = em.merge(usuario);
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Integer id = musica.getId();
-                if (findmusica(id) == null) {
-                    throw new NonexistentEntityException("The musica with id " + id + " no longer exists.");
+                Integer id = usuario.getId();
+                if (findusuario(id) == null) {
+                    throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.");
                 }
             }
             throw ex;
@@ -72,14 +72,14 @@ public class TarefaJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            tarefa musica;
+            usuario usuario;
             try {
-                musica = em.getReference(tarefa.class, id);
-                musica.getId();
+                usuario = em.getReference(usuario.class, id);
+                usuario.getId();
             } catch (EntityNotFoundException enfe) {
-                throw new NonexistentEntityException("The musica with id " + id + " no longer exists.", enfe);
+                throw new NonexistentEntityException("The usuario with id " + id + " no longer exists.", enfe);
             }
-            em.remove(musica);
+            em.remove(usuario);
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -88,19 +88,19 @@ public class TarefaJpaController implements Serializable {
         }
     }
 
-    public List<tarefa> findmusicaEntities() {
-        return findmusicaEntities(true, -1, -1);
+    public List<usuario> findusuarioEntities() {
+        return findusuarioEntities(true, -1, -1);
     }
 
-    public List<tarefa> findmusicaEntities(int maxResults, int firstResult) {
-        return findmusicaEntities(false, maxResults, firstResult);
+    public List<usuario> findusuarioEntities(int maxResults, int firstResult) {
+        return findusuarioEntities(false, maxResults, firstResult);
     }
 
-    private List<tarefa> findmusicaEntities(boolean all, int maxResults, int firstResult) {
+    private List<usuario> findusuarioEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(tarefa.class));
+            cq.select(cq.from(usuario.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -112,20 +112,20 @@ public class TarefaJpaController implements Serializable {
         }
     }
 
-    public tarefa findmusica(Integer id) {
+    public usuario findusuario(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(tarefa.class, id);
+            return em.find(usuario.class, id);
         } finally {
             em.close();
         }
     }
 
-    public int getmusicaCount() {
+    public int getusuarioCount() {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<tarefa> rt = cq.from(tarefa.class);
+            Root<usuario> rt = cq.from(usuario.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

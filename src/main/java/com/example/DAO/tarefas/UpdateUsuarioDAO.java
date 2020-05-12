@@ -5,8 +5,7 @@
  */
 package com.example.DAO.tarefas;
 
-import com.example.Model.tarefa;
-import org.hibernate.Query;
+import com.example.Model.usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,31 +15,24 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-public class iniciarTarefaDAO {
+public class UpdateUsuarioDAO {
 
-    public int iniciarTarefa(tarefa tarefa) {
+    public boolean updateUsuario(usuario usuario) {
 
         //GRAVAR NO BANCO
         //indica as configuracoes do banco
         //PODE SER USAR MAIS DE UMA CLASSE SEPARANDO POR VIRGULAS NO tbPauta.class,tb...
-        Configuration con = new Configuration().configure().addAnnotatedClass(tarefa.class);
+        Configuration con = new Configuration().configure().addAnnotatedClass(usuario.class);
         SessionFactory sf = con.buildSessionFactory();
 
         //abre sessao com o banco
         Session session = sf.openSession();
-        
-        int result = 0;
 
         try {
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            Query query = session.createQuery("update tarefa set status = :status"
-                    + " where id = :id");
-            query.setParameter("status", "Em andamento");
-            query.setParameter("id", tarefa.getId());
-            
-            result = query.executeUpdate();
+            session.update(usuario);
 
             //comita as informacoes
             tx.commit();
@@ -51,8 +43,8 @@ public class iniciarTarefaDAO {
                 sf.close();
             }
         }
-
-        return result;
+        
+        return  true;
 
     }
 

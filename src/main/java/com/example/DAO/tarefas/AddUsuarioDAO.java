@@ -5,8 +5,7 @@
  */
 package com.example.DAO.tarefas;
 
-import com.example.Model.tarefa;
-import org.hibernate.Query;
+import com.example.Model.usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,32 +15,26 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-public class concluirTarefaDAO {
+public class AddUsuarioDAO {
 
-    public int iniciarTarefa(int id, int nota) {
+    public Integer addTarefa(usuario tarefa) {
+
+        int id;
 
         //GRAVAR NO BANCO
         //indica as configuracoes do banco
         //PODE SER USAR MAIS DE UMA CLASSE SEPARANDO POR VIRGULAS NO tbPauta.class,tb...
-        Configuration con = new Configuration().configure().addAnnotatedClass(tarefa.class);
+        Configuration con = new Configuration().configure().addAnnotatedClass(usuario.class);
         SessionFactory sf = con.buildSessionFactory();
 
         //abre sessao com o banco
         Session session = sf.openSession();
-        
-        int result = 0;
 
         try {
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            Query query = session.createQuery("update tarefa set nota = :nota, status = :status"
-                    + " where id = :id");
-            query.setParameter("nota", nota);
-            query.setParameter("status", "Finalizada");
-            query.setParameter("id", id);
-            
-            result = query.executeUpdate();
+            id = (Integer) session.save(tarefa);
 
             //comita as informacoes
             tx.commit();
@@ -52,8 +45,8 @@ public class concluirTarefaDAO {
                 sf.close();
             }
         }
-
-        return result;
+        
+        return  id;
 
     }
 

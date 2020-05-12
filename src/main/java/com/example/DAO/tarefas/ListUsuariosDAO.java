@@ -5,7 +5,7 @@
  */
 package com.example.DAO.tarefas;
 
-import com.example.Model.tarefa;
+import com.example.Model.usuario;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,24 +16,24 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-public class listTarefas {
+public class ListUsuariosDAO {
 
-    public  List<tarefa> List() {
+    public  List<usuario> List() {
         
         //indica as configuracoes do banco
-        Configuration con = new Configuration().configure().addAnnotatedClass(tarefa.class);
+        Configuration con = new Configuration().configure().addAnnotatedClass(usuario.class);
         SessionFactory sf = con.buildSessionFactory();
 
         //abre sessao com o banco
         Session session = sf.openSession();
-        List<tarefa> tarefas;
+        List<usuario> tarefas;
 
         try {
             
 
             Transaction tx = session.beginTransaction();
 
-            String hql = "from tarefa";
+            String hql = "from usuario";
 
             tarefas = session.createQuery(hql).list();
 

@@ -5,7 +5,7 @@
  */
 package com.example.DAO.tarefas;
 
-import com.example.Model.tarefa;
+import com.example.Model.usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -15,16 +15,14 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-public class addTarefaDAO {
+public class DeleteUsuarioDAO {
 
-    public Integer addTarefa(tarefa tarefa) {
-
-        int id;
+    public boolean deleteUsuario(usuario usuario) {
 
         //GRAVAR NO BANCO
         //indica as configuracoes do banco
         //PODE SER USAR MAIS DE UMA CLASSE SEPARANDO POR VIRGULAS NO tbPauta.class,tb...
-        Configuration con = new Configuration().configure().addAnnotatedClass(tarefa.class);
+        Configuration con = new Configuration().configure().addAnnotatedClass(usuario.class);
         SessionFactory sf = con.buildSessionFactory();
 
         //abre sessao com o banco
@@ -34,7 +32,7 @@ public class addTarefaDAO {
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            id = (Integer) session.save(tarefa);
+            session.delete(usuario);
 
             //comita as informacoes
             tx.commit();
@@ -46,7 +44,7 @@ public class addTarefaDAO {
             }
         }
         
-        return  id;
+        return  true;
 
     }
 

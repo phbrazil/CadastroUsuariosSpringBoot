@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author paulo.bezerra
  */
 @Entity
-public class tarefa implements Serializable {
+public class usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -30,11 +30,11 @@ public class tarefa implements Serializable {
     private String datafim;
     private int nota;
     
-    public tarefa(){
+    public usuario(){
         
     }
 
-    public tarefa(Integer id, String nome, String descricao, String status, 
+    public usuario(Integer id, String nome, String descricao, String status, 
             String responsavel, String datainicio, String datafim, int nota) {
         this.id = id;
         this.nome = nome;
@@ -126,10 +126,10 @@ public class tarefa implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof tarefa)) {
+        if (!(object instanceof usuario)) {
             return false;
         }
-        tarefa other = (tarefa) object;
+        usuario other = (usuario) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
