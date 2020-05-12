@@ -114,11 +114,11 @@ public class UsuarioController {
         //BUSCAR LISTA ATUALIZADA        
         ListUsuariosDAO list = new ListUsuariosDAO();
 
-        List<usuario> listTarefas = list.List();
+        List<usuario> listUsuarios = list.List();
 
-        usuarios.addAttribute("result", "Usuario atualizado");
+        usuarios.addAttribute("result", "userUpdated");
 
-        usuarios.addAttribute("usuarios", listTarefas);
+        usuarios.addAttribute("usuarios", listUsuarios);
 
         return "listaUsuarios";
     }

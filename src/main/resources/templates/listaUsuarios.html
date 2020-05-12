@@ -16,13 +16,15 @@
     </div>
     <div th:if="${result == 'userAdded'}" class='alert alert-success'>Novo usuário adicionado
     </div>
+    <div th:if="${result == 'userUpdated'}" class='alert alert-success'>Usuário atualizado
+    </div>
     <div th:if="${result == 'userDeleted'}" class='alert alert-danger'>Usuário deletado
     </div>
     <div th:if="${result == 'failedAdded'}" class='alert alert-warning'>Erro ao incluir usuário
     </div>
     <div align="center" class="mb-2 mt-4">
         <table  class="table-striped table-bordered table-hover" 
-               style="width: 80%; text-align: center">
+                style="width: 80%; text-align: center">
             <thead>
                 <tr>
                     <th>#</th>
@@ -73,19 +75,34 @@
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <!--Body-->
+                        <!--MODAL EDIT USER-->
                         <div class="modal-body mb-0">
                             <form action="#" th:action="@{/editUsuario}" th:object="${usuario}" method="post">
                                 <div class='col-md-12'>
-                                    <div class='col-md-5 mb-2'>
-                                        <input name="responsavel" th:value="*{nome}" title="Nome Completo" type="text" class="form-control" id="responsavel" maxlength ="70" required>
+                                    <div class='col-md-12 mb-2'>
+                                        <div class='row'>
+                                            <div class='col-md-3'>
+                                                <label class='text-muted'>Username</label>
+                                            </div>
+                                            <div class='col-md-9 mb-2'>
+                                                <input name="password" th:field="*{username}" th:value="*{username}" title="Username" type="text" class="form-control" id="username" placeholder="Username" maxlength ="70" required>
+                                            </div>
+                                            <div class='col-md-3'>
+                                                <label class='text-muted'>Nome Completo</label>
+                                            </div>
+                                            <div class='col-md-9 mb-2'>
+                                                <input name="nome" th:field="*{nome}" th:value="*{nome}"  title="Nome Completo" type="text" class="form-control" id="nome" placeholder="Nome Completo" maxlength ="70" required>
+                                            </div>
+                                            <div class='col-md-3'>
+                                                <label class='text-muted'>Senha</label>
+                                            </div>
+                                            <div class='col-md-9 mb-4'>
+                                                <input name="password" th:field="*{password}" th:value="*{password}"  title="Senha" type="password" class="form-control" id="password" placeholder="Senha" value="" maxlength ="70" required>
+                                            </div>
+                                            <input name="id"  th:value="*{id}" type="hidden" id="id">
+                                        </div>
+                                        <p><input type="submit" value="Atualizar" class='btn btn-success' />
                                     </div>
-                                    <div class='col-md-5 mb-2'>
-                                        <input readonly name="username" th:value="*{username}"  title="Username" type="text" class="form-control" id="username" placeholder="Username" value="" maxlength ="70" required>
-                                    </div>
-                                    <input name="id"  th:value="*{id}" type="hidden" id="id">
-
-                                    <p><input type="submit" value="Atualizar" class='btn btn-success' />
                                 </div>
                             </form>
                         </div>
