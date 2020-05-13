@@ -13,7 +13,7 @@ Caso prefira gerar um arquivo .war e rodar em seu servidor web preferido como Jb
 basta alterar os arquivos abaixo;
 
 
-1 - No pom.xml renomeie a linha de <packaging>jar</packaging> para <packaging>war</packaging>
+1 - No pom.xml renomeie a linha packaging de jar para war
 
 2 - No pom.xml comente ou remova o bloco spring-boot-starter-tomcat
 		  		
