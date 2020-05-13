@@ -36,7 +36,7 @@ Inicie o servidor rodando o comando sudo sh apache-tomcat-8.5.42/bin/catalina.sh
 
 1 - Crie um arquivo .sh com os dados abaixo:
 
-sudo java -jar /home/flex/MicroServices/GerenciadorUsuarios.jar --server.port=8080
+sudo java -jar /caminho_user_servidor/GerenciadorUsuarios.jar --server.port=8080
 
 2 - Altere a permissão do arquivo .sh criado com o comando abaixo:
 
