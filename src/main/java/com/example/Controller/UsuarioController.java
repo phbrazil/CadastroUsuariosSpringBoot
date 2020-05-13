@@ -1,4 +1,4 @@
-package com.example.handlingformsubmission;
+package com.example.Controller;
 
 import com.example.DAO.AddUsuarioDAO;
 import com.example.DAO.DeleteUsuarioDAO;
@@ -34,9 +34,9 @@ public class UsuarioController {
         
         ListUsuariosDAO list = new ListUsuariosDAO();
 
-        List<usuario> listTarefas = list.List();
+        List<usuario> listUsuarios = list.List();
 
-        usuarios.addAttribute("usuarios", listTarefas);
+        usuarios.addAttribute("usuarios", listUsuarios);
         usuarios.addAttribute("usuario", new usuario());
         return "listaUsuarios";
     }
@@ -88,11 +88,11 @@ public class UsuarioController {
 
         ListUsuariosDAO list = new ListUsuariosDAO();
 
-        List<usuario> listTarefas = list.List();
+        List<usuario> listUsuarios = list.List();
 
         usuarios.addAttribute("result", "userDeleted");
 
-        usuarios.addAttribute("usuarios", listTarefas);
+        usuarios.addAttribute("usuarios", listUsuarios);
 
         return "listaUsuarios";
     }
