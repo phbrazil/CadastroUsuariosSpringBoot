@@ -32,7 +32,7 @@ apache-tomcat-8.5.42/webapps
 
 Inicie o servidor rodando o comando sudo sh apache-tomcat-8.5.42/bin/catalina.sh start
 
-# EXECUTANDO EM BACKGROUND 
+# EXECUTANDO .JAR EM BACKGROUND 
 
 1 - Crie um arquivo .sh com os dados abaixo:
 
