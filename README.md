@@ -17,5 +17,10 @@ para:
 		public class HandlingFormSubmissionApplication extends SpringBootServletInitializer{
 		
 		
-4 - Se preferir pode testar com o servidor Tomcat copiando a pasta apache-tomcat-8.5.42 para seu servidor e colocar o .war gerado na pasta 
+4 - Se preferir pode testar com o servidor Tomcat copiando a pasta apache-tomcat-8.5.42 para seu servidor, de preferencia Linux, e colocar o .war gerado na pasta 
 apache-tomcat-8.5.42/webapps
+
+
+Caso prefira executar via jar rode o comando abaixo após copiar o arquivo .jar para seu servidor:
+
+sudo java -jar GerenciadorUsuarios.jar --server.port=80
