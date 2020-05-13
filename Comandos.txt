@@ -1,0 +1,2 @@
+//INICIAR APLICACAO
+sudo java -jar GerenciadorUsuarios-0.0.1-SNAPSHOT.jar --server.port=80
