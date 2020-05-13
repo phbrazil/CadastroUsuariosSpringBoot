@@ -15,7 +15,7 @@ basta alterar os arquivos abaixo;
 
 1 - No pom.xml renomeie a linha packaging de jar para war
 
-2 - No pom.xml comente ou remova o bloco spring-boot-starter-tomcat
+2 - No pom.xml descomente o bloco spring-boot-starter-tomcat
 		  		
 3 - Na classe Main renomeie a linha 
 
