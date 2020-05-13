@@ -3,43 +3,51 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.DAO.tarefas;
+package com.example.DAO;
 
 import com.example.Model.usuario;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class GetUsuarioDAO {
-    
-    public usuario getUsuario(int id){
-        
-                //indica as configuracoes do banco
+public class AddUsuarioDAO {
+
+    public Integer addUsuario(usuario usuario) {
+
+        int id;
+
+        //GRAVAR NO BANCO
+        //indica as configuracoes do banco
+        //PODE SER USAR MAIS DE UMA CLASSE SEPARANDO POR VIRGULAS NO tbPauta.class,tb...
         Configuration con = new Configuration().configure().addAnnotatedClass(usuario.class);
         SessionFactory sf = con.buildSessionFactory();
 
         //abre sessao com o banco
         Session session = sf.openSession();
-        usuario usuarios;
+
         try {
 
+            //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-
-            usuarios = (usuario) session.get(usuario.class, id);
+            id = (Integer) session.save(usuario);
 
             //comita as informacoes
             tx.commit();
 
+        } catch (HibernateException e) {
+            System.out.println("Error: " + e);
+            id = 0;
         } finally {
             if (session != null) {
                 session.close();
                 sf.close();
             }
-
         }
 
-        return usuarios;
+        return id;
+
     }
-    
+
 }

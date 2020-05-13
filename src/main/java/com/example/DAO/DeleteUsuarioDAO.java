@@ -3,49 +3,45 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.DAO.tarefas;
+package com.example.DAO;
 
 import com.example.Model.usuario;
-import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class ListUsuariosDAO {
+public class DeleteUsuarioDAO {
 
-    public  List<usuario> List() {
-        
+    public boolean deleteUsuario(usuario usuario) {
+
+        //GRAVAR NO BANCO
         //indica as configuracoes do banco
+        //PODE SER USAR MAIS DE UMA CLASSE SEPARANDO POR VIRGULAS NO tbPauta.class,tb...
         Configuration con = new Configuration().configure().addAnnotatedClass(usuario.class);
         SessionFactory sf = con.buildSessionFactory();
 
         //abre sessao com o banco
         Session session = sf.openSession();
-        List<usuario> usuarios;
 
         try {
-            
 
+            //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-
-            String hql = "from usuario";
-
-            usuarios = session.createQuery(hql).list();
+            session.delete(usuario);
 
             //comita as informacoes
             tx.commit();
-            
+
         } finally {
             if (session != null) {
                 session.close();
                 sf.close();
             }
-
         }
         
+        return  true;
 
-        return usuarios;
     }
 
 }

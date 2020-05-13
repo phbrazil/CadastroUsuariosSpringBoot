@@ -14,13 +14,13 @@
     </head>
     <body>
     </div>
-    <div th:if="${result == 'userAdded'}" class='alert alert-success'>Novo usuário adicionado
+    <div th:if="${result == 'userAdded'}" class='alert alert-success'>Novo usuário <span th:text="${user}"></span> adicionado
     </div>
     <div th:if="${result == 'userUpdated'}" class='alert alert-success'>Usuário atualizado
     </div>
     <div th:if="${result == 'userDeleted'}" class='alert alert-danger'>Usuário deletado
     </div>
-    <div th:if="${result == 'failedAdded'}" class='alert alert-warning'>Erro ao incluir usuário
+    <div th:if="${result == 'failedAdded'}" class='alert alert-warning'>Erro ao incluir o usuário <span th:text="${user}"></span>
     </div>
     <div align="center" class="mb-2 mt-4">
         <table  class="table-striped table-bordered table-hover" 
@@ -84,21 +84,22 @@
                                             <label class='text-muted'>Username</label>
                                         </div>
                                         <div class='col-md-9 mb-2'>
-                                            <input name="username" th:value="*{username}" title="Username" type="text" class="form-control" id="username" placeholder="Username" maxlength ="70" required>
+                                            <input name="username" th:value="*{username}" title="Username" type="text" class="form-control" id="username" placeholder="Username" maxlength ="15" required>
                                         </div>
                                         <div class='col-md-3'>
                                             <label class='text-muted'>Nome Completo</label>
                                         </div>
                                         <div class='col-md-9 mb-2'>
-                                            <input name="nome" th:value="*{nome}" title="Nome Completo" type="text" class="form-control" id="nome" placeholder="Nome Completo" maxlength ="70" required>
+                                            <input name="nome" th:value="*{nome}" title="Nome Completo" type="text" class="form-control" id="nome" placeholder="Nome Completo" maxlength ="80" required>
                                         </div>
                                         <div class='col-md-3'>
                                             <label class='text-muted'>Senha</label>
                                         </div>
                                         <div class='col-md-9 mb-4'>
-                                            <input name="password" th:value="*{password}" title="Senha" type="password" class="form-control" id="password" placeholder="Senha" value="" maxlength ="70" required>
+                                            <input name="password" th:value="*{password}" title="Senha" type="password" class="form-control" id="password" placeholder="Senha" value="" maxlength ="50" required>
                                         </div>
                                         <input name="id"  th:value="*{id}" type="hidden" id="id">
+                                        <input name="dataCadastro"  th:value="*{dataCadastro}" type="hidden" id="dataCadastro">
                                     </div>
                                     <div class='col-md-12 mb-2'>
                                         <div class='row'>

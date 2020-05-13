@@ -10,13 +10,13 @@
             <h1 class='text-muted mt-4'>Novo Usuário</h1>
             <form action="#" th:action="@{/AddUsuario}" th:object="${usuario}" method="post">
                 <div class='col-md-5 mb-2'>
-                    <input name="username" th:field="*{username}" title="Username" type="text" class="form-control" id="username" placeholder="Username" value="" maxlength ="70" required>
+                    <input name="username" th:field="*{username}" title="Username" type="text" class="form-control" id="username" placeholder="Username" value="" maxlength ="15" required>
                 </div>
                 <div class='col-md-5 mb-2'>
-                    <input name="nome" th:field="*{nome}" title="Nome Completo" type="text" class="form-control" id="nome" placeholder="Nome Completo" value="" maxlength ="70" required>
+                    <input name="nome" th:field="*{nome}" title="Nome Completo" type="text" class="form-control" id="nome" placeholder="Nome Completo" value="" maxlength ="80" required>
                 </div>
                 <div class='col-md-5 mb-2'>
-                    <input name="password" th:field="*{password}" title="Senha" type="password" class="form-control" id="artista" placeholder="Senha" value="" maxlength ="70" required>
+                    <input name="password" th:field="*{password}" title="Senha" type="password" class="form-control" id="artista" placeholder="Senha" value="" maxlength ="50" required>
                 </div>
                 <div class='col-md-5 mb-2'>
                     <div class='row'>

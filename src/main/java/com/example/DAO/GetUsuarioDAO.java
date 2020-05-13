@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.DAO.tarefas;
+package com.example.DAO;
 
 import com.example.Model.usuario;
 import org.hibernate.Session;
@@ -11,24 +11,22 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class UpdateUsuarioDAO {
-
-    public boolean updateUsuario(usuario usuario) {
-
-        //GRAVAR NO BANCO
-        //indica as configuracoes do banco
-        //PODE SER USAR MAIS DE UMA CLASSE SEPARANDO POR VIRGULAS NO tbPauta.class,tb...
+public class GetUsuarioDAO {
+    
+    public usuario getUsuario(int id){
+        
+                //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(usuario.class);
         SessionFactory sf = con.buildSessionFactory();
 
         //abre sessao com o banco
         Session session = sf.openSession();
-
+        usuario usuarios;
         try {
 
-            //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            session.update(usuario);
+
+            usuarios = (usuario) session.get(usuario.class, id);
 
             //comita as informacoes
             tx.commit();
@@ -38,10 +36,10 @@ public class UpdateUsuarioDAO {
                 session.close();
                 sf.close();
             }
+
         }
-        
-        return  true;
 
+        return usuarios;
     }
-
+    
 }

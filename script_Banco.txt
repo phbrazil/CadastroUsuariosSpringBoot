@@ -1,12 +1,16 @@
-CREATE DATABASE tarefas;
+CREATE DATABASE usuario;
 
-CREATE TABLE tarefa(
+use usuario;
+
+CREATE TABLE usuario(
 id INT NOT NULL AUTO_INCREMENT,
 nome VARCHAR(100) NOT NULL DEFAULT '',
-descricao VARCHAR(200) NOT NULL DEFAULT '',
-status VARCHAR(60) NOT NULL DEFAULT 'Não iniciada',
-responsavel VARCHAR(60) not null default '',
-datainicio VARCHAR(20) not null default '',
-datafim VARCHAR(20) not null default '',
-nota int default 0,
+username VARCHAR(20) NOT NULL unique DEFAULT '',
+password VARCHAR(60) not null default '',
+status boolean NOT NULL DEFAULT true,
+admin boolean DEFAULT false,
+papel1 boolean DEFAULT false,
+papel2 boolean DEFAULT false,
+papel3 boolean DEFAULT false,
+dataCadastro VARCHAR(20) not null default '',
 PRIMARY KEY (id));

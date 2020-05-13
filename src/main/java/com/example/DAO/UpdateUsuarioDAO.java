@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.example.DAO.tarefas;
+package com.example.DAO;
 
 import com.example.Model.usuario;
 import org.hibernate.Session;
@@ -11,12 +11,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+public class UpdateUsuarioDAO {
 
-public class AddUsuarioDAO {
-
-    public Integer addUsuario(usuario usuario) {
-
-        int id;
+    public boolean updateUsuario(usuario usuario) {
 
         //GRAVAR NO BANCO
         //indica as configuracoes do banco
@@ -31,7 +28,7 @@ public class AddUsuarioDAO {
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            id = (Integer) session.save(usuario);
+            session.update(usuario);
 
             //comita as informacoes
             tx.commit();
@@ -43,7 +40,7 @@ public class AddUsuarioDAO {
             }
         }
         
-        return  id;
+        return  true;
 
     }
 
