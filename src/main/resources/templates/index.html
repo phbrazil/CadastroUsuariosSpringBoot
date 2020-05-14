@@ -2,14 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head> 
         <title>Cadastro de Usuários</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     </head>
     <body>
-        <div class="card shadow container w-50 mt-4">
+        <div class="card shadow container mt-4" style="width: 90%">
             <div align='center' class='col-mt-4 mb-4'>
-                <h1 class='text-muted mt-4'>Novo Usuário</h1>
-                <form action="#" th:action="@{/AddUsuario}" th:object="${usuario}" method="post">
+                <h2 class='text-muted mt-4'>Novo Usuário</h2>
+                <form action="#" th:action="@{/AddUsuario}" th:object="${usuario}" method="post" class="mt-2">
                     <div class='col-md-10 mb-2'>
                         <input name="username" th:field="*{username}" title="Username" type="text" class="form-control" id="username" placeholder="Username" value="" maxlength ="15" required>
                     </div>
