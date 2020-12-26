@@ -45,20 +45,22 @@ sudo chmod +x arquivo.sh
 3 - CRIE um arquivo GerenciadorUsuarios.service no caminho /etc/systemd/system com os dados abaixo:
 
 [Unit]
-Description=A Spring Boot application
-After=syslog.target
+Description=Spring Boot App
 
 [Service]
-User=root
-ExecStart=/bin/bash caminho_do_arquivo/script/spring.sh
+Type=notify
+ExecStart=/bin/bash /home/user/scripts/script.sh
 SuccessExitStatus=143
+StandardOutput=null
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
+Alias=fotos.service
 
 4 - Altere a permissão do arquivo .service com o comando abaixo:
 
-sudo chmod 644 arquivo.service
+sudo chmod 664 arquivo.service
 
 5 - Atualize os serviços rodando o comando abaixo:
 
